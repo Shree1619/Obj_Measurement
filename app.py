@@ -1,3 +1,4 @@
+# app.py
 import streamlit as st
 import cv2
 import numpy as np
@@ -24,34 +25,36 @@ def main():
             st.image(image, caption="Uploaded Image.", use_column_width=True)
 
             if st.button("Measure Object"):
-                measure_object(image)
+                wP = 210  # You can adjust this value according to your needs
+                hP = 297  # You can adjust this value according to your needs
+                measure_object(image, wP, hP)
 
     elif choice == "Live Camera Feed":
         st.subheader("Live Camera Feed")
         run_camera()
 
-def measure_object(image):
+def measure_object(image, wP, hP):
     imgContours, conts = utlis.getContours(image, minArea=50000, filter=4)
     if len(conts) != 0:
         biggest = conts[0][2]
-        imgWarp = utlis.warpImg(image, biggest, wP, hP)
+        imgWarp = utlis.warpImg(image, biggest, image.shape[1], image.shape[0], wP, hP)
         imgContours2, conts2 = utlis.getContours(imgWarp, minArea=2000, filter=4, cThr=[50, 50], draw=False)
 
         if len(conts2) != 0:
             for obj in conts2:
                 cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 2)
                 nPoints = utlis.reorder(obj[2])
-                nW = round((utlis.findDis(nPoints[0][0] // scale, nPoints[1][0] // scale) / 10), 1)
-                nH = round((utlis.findDis(nPoints[0][0] // scale, nPoints[2][0] // scale) / 10), 1)
+                nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
+                nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[1][0][0], nPoints[1][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[2][0][0], nPoints[2][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                 x, y, w, h = obj[3]
-                cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
-                            (255, 0, 255), 2)
-                cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 2), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
-                            (255, 0, 255), 2)
+                cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10),
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 0, 255), 2)
+                cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 2),
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 0, 255), 2)
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
 def run_camera():
@@ -68,15 +71,15 @@ def run_camera():
 
         if len(conts) != 0:
             biggest = conts[0][2]
-            imgWarp = utlis.warpImg(img, biggest, wP, hP)
+            imgWarp = utlis.warpImg(img, biggest, img.shape[1], img.shape[0], wP=210, hP=297)
             imgContours2, conts2 = utlis.getContours(imgWarp, minArea=2000, filter=4, cThr=[50, 50], draw=False)
 
             if len(conts2) != 0:
                 for obj in conts2:
                     cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 2)
                     nPoints = utlis.reorder(obj[2])
-                    nW = round((utlis.findDis(nPoints[0][0] // scale, nPoints[1][0] // scale) / 10), 1)
-                    nH = round((utlis.findDis(nPoints[0][0] // scale, nPoints[2][0] // scale) / 10), 1)
+                    nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
+                    nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
                     cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                     (nPoints[1][0][0], nPoints[1][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                     cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
