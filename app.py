@@ -13,7 +13,7 @@ def main():
 
     if choice == "About Us":
         st.subheader("About Us")
-        st.write("This is a object measurement which measures the object size placed on A4 paper.")
+        st.write("This is a object measurement application which measures the object size placed on A4 paper.")
         st.write ("Created by:")
         st.write ("Shrikant Mundhe")
         st.write ("Pratik Ghadge")
