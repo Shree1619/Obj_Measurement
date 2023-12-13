@@ -42,7 +42,7 @@ def measure_object(image, wP, hP):
 
         if len(conts2) != 0:
             for obj in conts2:
-                cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 2)
+                cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
                 nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
                 nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
@@ -52,9 +52,9 @@ def measure_object(image, wP, hP):
                                 (nPoints[2][0][0], nPoints[2][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                 x, y, w, h = obj[3]
                 cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 255), 2)
-                cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 2),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 255), 2)
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 255), 0.8)
+                cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 0.8),
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 255), 0.8)
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
 def run_camera():
