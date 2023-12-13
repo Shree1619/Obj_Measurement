@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 import utlis
 
-scale = 3
+scale = 0.5
 wP = 210 *scale
 hP= 297 *scale
 
