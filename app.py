@@ -44,8 +44,8 @@ def measure_object(image, wP, hP):
             for obj in conts2:
                 cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
-                nH = round((utlis.findDis(nPoints[0][0] // 2, nPoints[1][0] // 2) / 10), 1)
-                nW = round((utlis.findDis(nPoints[0][0] // 0.5, nPoints[2][0] // 0.5) / 10), 1)
+                nH = round((utlis.findDis(nPoints[0][0] // 1.8, nPoints[1][0] // 1.8) / 10), 1)
+                nW = round((utlis.findDis(nPoints[0][0] // 0.8, nPoints[2][0] // 0.8) / 10), 1)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[1][0][0], nPoints[1][0][1]), (0, 0, 255), 1, 8, 0, 0.05)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
