@@ -42,7 +42,7 @@ def measure_object(image, wP, hP):
 
         if len(conts2) != 0:
             for obj in conts2:
-                cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 0.8)
+                cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
                 nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
                 nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
