@@ -78,8 +78,8 @@ def run_camera():
                 for obj in conts2:
                     cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 2)
                     nPoints = utlis.reorder(obj[2])
-                    nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
-                    nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
+                    nW = round((utlis.findDis(nPoints[0][0] // 1, nPoints[1][0] // 1) / 10), 1)
+                    nH = round((utlis.findDis(nPoints[0][0] // 1, nPoints[2][0] // 1) / 10), 1)
                     cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                     (nPoints[1][0][0], nPoints[1][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                     cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
