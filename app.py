@@ -44,12 +44,12 @@ def measure_object(image, wP, hP):
             for obj in conts2:
                 cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
-                nW = round((utlis.findDis(nPoints[0][0] // 2, nPoints[1][0] // 2) / 10), 1)
-                nH = round((utlis.findDis(nPoints[0][0] // 2, nPoints[2][0] // 2) / 10), 1)
+                nW = round((utlis.findDis(nPoints[0][0] // 3, nPoints[1][0] // 3) / 10), 1)
+                nH = round((utlis.findDis(nPoints[0][0] // 3, nPoints[2][0] // 3) / 10), 1)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
-                                (nPoints[1][0][0], nPoints[1][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
+                                (nPoints[1][0][0], nPoints[1][0][1]), (0, 0, 255), 1, 8, 0, 0.05)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
-                                (nPoints[2][0][0], nPoints[2][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
+                                (nPoints[2][0][0], nPoints[2][0][1]), (0, 255, 255), 1, 8, 0, 0.05)
                 x, y, w, h = obj[3]
                 cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10),
                             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), 1)
