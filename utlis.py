@@ -1,3 +1,4 @@
+# utlis.py
 import cv2
 import numpy as np
 
@@ -40,10 +41,10 @@ def reorder(myPoints):
     myPointsNew[2] = myPoints[np.argmax(diff)]
     return myPointsNew
 
-def warpImg(img, points, w, h, pad=20):
+def warpImg(img, points, w, h, wP, hP, pad=20):
     points = reorder(points)
     pts1 = np.float32(points)
-    pts2 = np.float32([[0, 0], [w, 0], [0, h], [w, h]])
+    pts2 = np.float32([[0, 0], [wP, 0], [0, hP], [wP, hP]])
     matrix = cv2.getPerspectiveTransform(pts1, pts2)
     imgWarp = cv2.warpPerspective(img, matrix, (w, h))
     imgWarp = imgWarp[pad:imgWarp.shape[0] - pad, pad:imgWarp.shape[1] - pad]
