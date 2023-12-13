@@ -66,20 +66,14 @@ def run_camera():
     wP = 210  # Replace with the actual width of the object to measure
     hP = 297  # Replace with the actual height of the object to measure
 
+    camera = st.camera()
+
     while True:
-        success, img = cap.read()
+        img = camera.get_frame()
         img = cv2.resize(img, (0, 0), None, 0.5, 0.5)
-
-        measure_object(img, wP=wP, hP=hP)  # Pass wP and hP as arguments
-
         st.image(img, caption="Live Camera Feed.", use_column_width=True)
-
-        if st.button("Stop Camera"):
-            cap.release()
-            break
-            
         imgContours, conts = utlis.getContours(img, minArea=50000, filter=4)
-
+        
         if len(conts) != 0:
             biggest = conts[0][2]
             imgWarp = utlis.warpImg(img, biggest, img.shape[1], img.shape[0], wP=210, hP=297)
