@@ -61,10 +61,10 @@ def run_camera():
     wP = 210  # Replace with the actual width of the object to measure
     hP = 297  # Replace with the actual height of the object to measure
 
-    cap = cv2.VideoCapture(3)
-    cap.set(10, 160)
-    cap.set(3, 1280)
-    cap.set(4, 720)
+    cap = cv2.VideoCapture(0)
+    cap.set(10, 100)
+    cap.set(3, 640)
+    cap.set(4, 480)
 
     while True:
         success, img = cap.read()
