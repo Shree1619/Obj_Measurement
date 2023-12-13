@@ -76,7 +76,7 @@ def run_camera():
 
             if len(conts2) != 0:
                 for obj in conts2:
-                    cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 2)
+                    cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 255), 2)
                     nPoints = utlis.reorder(obj[2])
                     nW = round((utlis.findDis(nPoints[0][0] // 1, nPoints[1][0] // 1) / 10), 1)
                     nH = round((utlis.findDis(nPoints[0][0] // 1, nPoints[2][0] // 1) / 10), 1)
