@@ -63,8 +63,8 @@ def run_camera():
 
     cap = cv2.VideoCapture(1)
     cap.set(10, 160)
-    cap.set(3, 1920)
-    cap.set(4, 1080)
+    cap.set(3, 1280)
+    cap.set(4, 720)
 
     while True:
         success, img = cap.read()
