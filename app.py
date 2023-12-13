@@ -58,18 +58,16 @@ def measure_object(image, wP, hP):
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
 def run_camera():
+    wP = 210  # Replace with the actual width of the object to measure
+    hP = 297  # Replace with the actual height of the object to measure
+
     cap = cv2.VideoCapture(0)
     cap.set(10, 160)
     cap.set(3, 1920)
     cap.set(4, 1080)
 
-    wP = 210  # Replace with the actual width of the object to measure
-    hP = 297  # Replace with the actual height of the object to measure
-
-    camera = st.camera()
-
     while True:
-        img = camera.get_frame()
+        success, img = cap.read()
         img = cv2.resize(img, (0, 0), None, 0.5, 0.5)
         st.image(img, caption="Live Camera Feed.", use_column_width=True)
         imgContours, conts = utlis.getContours(img, minArea=50000, filter=4)
