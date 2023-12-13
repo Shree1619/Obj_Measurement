@@ -52,9 +52,9 @@ def measure_object(image, wP, hP):
                                 (nPoints[2][0][0], nPoints[2][0][1]), (255, 0, 255), 3, 8, 0, 0.05)
                 x, y, w, h = obj[3]
                 cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 0), 1)
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 255, 255), 1)
                 cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 1),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 0, 0), 1)
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (0, 255, 255), 1)
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
 def run_camera():
