@@ -25,8 +25,8 @@ def main():
             st.image(image, caption="Uploaded Image.", use_column_width=True)
 
             if st.button("Measure Object"):
-                wP = 250  # You can adjust this value according to your needs
-                hP = 297  # You can adjust this value according to your needs
+                wP = 100  # You can adjust this value according to your needs
+                hP = 310  # You can adjust this value according to your needs
                 measure_object(image, wP, hP)
 
     elif choice == "Live Camera Feed":
