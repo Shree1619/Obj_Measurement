@@ -13,7 +13,11 @@ def main():
 
     if choice == "About Us":
         st.subheader("About Us")
-        st.write("This is a simple object measurement app using OpenCV and Streamlit.")
+        st.write("This is a object measurement which measures the object size placed on A4 paper."\
+        "Created by:"\
+                 "\ttab Shrikant Mundhe"\
+                "\ttab Pratik Ghadge"\
+                "\ttab Nikhil Khune")
 
     elif choice == "Upload Image":
         st.subheader("Upload Image")
@@ -60,9 +64,8 @@ def measure_object(image, wP, hP):
 def run_camera():
     wP = 210  # Replace with the actual width of the object to measure
     hP = 297  # Replace with the actual height of the object to measure
-    for i in range(10):  # Try indices from 0 to 9
-        cap = cv2.VideoCapture(i)
     
+    cap = cv2.VideoCapture(0)
     cap.set(10, 100)
     cap.set(3, 640)
     cap.set(4, 480)
