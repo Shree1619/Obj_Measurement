@@ -5,10 +5,6 @@ import numpy as np
 from PIL import Image
 import utlis
 
-scale = 0.5
-wP = 210 *scale
-hP= 297 *scale
-
 def main():
     st.title("Object Measurement App")
 
@@ -48,8 +44,8 @@ def measure_object(image, wP, hP):
             for obj in conts2:
                 cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
-                nW = round((utlis.findDis(nPoints[0][0] // scale, nPoints[1][0] // scale) / 10), 1)
-                nH = round((utlis.findDis(nPoints[0][0] // scale, nPoints[2][0] // scale) / 10), 1)
+                nH = round((utlis.findDis(nPoints[0][0] // 0.5, nPoints[1][0] // 0.5) / 10), 1)
+                nW = round((utlis.findDis(nPoints[0][0] // 0.5, nPoints[2][0] // 0.5) / 10), 1)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[1][0][0], nPoints[1][0][1]), (0, 0, 255), 1, 8, 0, 0.05)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
