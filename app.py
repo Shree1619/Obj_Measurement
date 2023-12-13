@@ -51,9 +51,9 @@ def measure_object(image, wP, hP):
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[2][0][0], nPoints[2][0][1]), (0, 255, 255), 1, 8, 0, 0.05)
                 x, y, w, h = obj[3]
-                cv2.putText(imgContours2, '{}cm'.format(nW), (x - 70, y + h // 2),
+                cv2.putText(imgContours2, '{}cm'.format(nW), (x + 30, y - 10),
                             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), 1)
-                cv2.putText(imgContours2, '{}cm'.format(nH), (x + 30, y - 10),
+                cv2.putText(imgContours2, '{}cm'.format(nH), (x - 70, y + h // 2),
                             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), 1)
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
