@@ -5,6 +5,8 @@ import numpy as np
 from PIL import Image
 import utlis
 
+scale = 0.7
+
 def main():
     st.title("Object Measurement App")
 
@@ -25,8 +27,8 @@ def main():
             st.image(image, caption="Uploaded Image.", use_column_width=True)
 
             if st.button("Measure Object"):
-                wP = 310  # You can adjust this value according to your needs
-                hP = 397  # You can adjust this value according to your needs
+                wP = 310 *scale  # You can adjust this value according to your needs
+                hP = 397 *scale  # You can adjust this value according to your needs
                 measure_object(image, wP, hP)
 
     elif choice == "Live Camera Feed":
@@ -44,8 +46,8 @@ def measure_object(image, wP, hP):
             for obj in conts2:
                 cv2.polylines(imgContours2, [obj[2]], True, (0, 255, 0), 1)
                 nPoints = utlis.reorder(obj[2])
-                nH = round((utlis.findDis(nPoints[0][0] // 0.7, nPoints[1][0] // 0.7) / 10), 1)
-                nW = round((utlis.findDis(nPoints[0][0] // 0.7, nPoints[2][0] // 0.7) / 10), 1)
+                nH = round((utlis.findDis(nPoints[0][0] // scale, nPoints[1][0] // scale) / 10), 1)
+                nW = round((utlis.findDis(nPoints[0][0] // scale, nPoints[2][0] // scale) / 10), 1)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
                                 (nPoints[1][0][0], nPoints[1][0][1]), (0, 0, 255), 1, 8, 0, 0.05)
                 cv2.arrowedLine(imgContours2, (nPoints[0][0][0], nPoints[0][0][1]),
