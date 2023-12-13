@@ -68,10 +68,16 @@ def run_camera():
 
     while True:
         success, img = cap.read()
+
+        if not success:
+            st.warning("Error capturing frame from the camera.")
+            break
+
         img = cv2.resize(img, (0, 0), None, 0.5, 0.5)
         st.image(img, caption="Live Camera Feed.", use_column_width=True)
+
         imgContours, conts = utlis.getContours(img, minArea=50000, filter=4)
-        
+
         if len(conts) != 0:
             biggest = conts[0][2]
             imgWarp = utlis.warpImg(img, biggest, img.shape[1], img.shape[0], wP=210, hP=297)
