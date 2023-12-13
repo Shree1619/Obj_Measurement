@@ -63,10 +63,21 @@ def run_camera():
     cap.set(3, 1920)
     cap.set(4, 1080)
 
+    wP = 210  # Replace with the actual width of the object to measure
+    hP = 297  # Replace with the actual height of the object to measure
+
     while True:
         success, img = cap.read()
         img = cv2.resize(img, (0, 0), None, 0.5, 0.5)
+
+        measure_object(img, wP=wP, hP=hP)  # Pass wP and hP as arguments
+
         st.image(img, caption="Live Camera Feed.", use_column_width=True)
+
+        if st.button("Stop Camera"):
+            cap.release()
+            break
+            
         imgContours, conts = utlis.getContours(img, minArea=50000, filter=4)
 
         if len(conts) != 0:
