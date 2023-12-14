@@ -13,11 +13,11 @@ def main():
 
     if choice == "About Us":
         st.subheader("About Us")
-        st.write("This is a object measurement application which measures the object size placed on A4 paper.")
-        st.write ("Created by:")
-        st.write ("Shrikant Mundhe")
-        st.write ("Pratik Ghadge")
-        st.write ("Nikhil Khune")
+        st.write("This is an object measurement application that measures the object size placed on A4 paper.")
+        st.write("Created by:")
+        st.write("Shrikant Mundhe")
+        st.write("Pratik Ghadge")
+        st.write("Nikhil Khune")
 
     elif choice == "Upload Image":
         st.subheader("Upload Image")
@@ -29,8 +29,8 @@ def main():
             st.image(image, caption="Uploaded Image.", use_column_width=True)
 
             if st.button("Measure Object"):
-                wP = 310  # You can adjust this value according to your needs
-                hP = 397  # You can adjust this value according to your needs
+                wP = 310
+                hP = 397
                 measure_object(image, wP, hP)
 
     elif choice == "Live Camera Feed":
@@ -62,8 +62,8 @@ def measure_object(image, wP, hP):
             st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
 def run_camera():
-    wP = 210  # Replace with the actual width of the object to measure
-    hP = 297  # Replace with the actual height of the object to measure
+    wP = 210
+    hP = 297
     
     cap = cv2.VideoCapture(0)
     cap.set(10, 100)
@@ -104,7 +104,7 @@ def run_camera():
                                 cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 0, 255), 2)
                 st.image(imgContours2, caption="Measured Object.", use_column_width=True)
 
-        if st.button("Stop Camera"):
+        if st.button("Stop Camera", key="stop_camera_button"):
             cap.release()
             break
 
